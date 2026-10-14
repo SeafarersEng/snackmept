@@ -523,9 +523,9 @@
   <!-- ================= LOGIN SCRIPT ================= -->
   <script>
     // ================================================================
-    // ⚠️ ဒီနေရာမှာ သင့် Google Apps Script Web App URL ထည့်ပါ
+    // ✅ သင့် Google Apps Script Web App URL
     // ================================================================
-    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbXXXXXXXXXXXXXXXXXXXXX/exec";
+    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx9B77TpcleetOyE60NkVL_14b30YXbQY_BKc4Anhp_JSfegRu-zZfgWIWhRl5RIh7pzg/exec";
 
     const loginContainer = document.getElementById('login-container');
     const mainContainer  = document.getElementById('main-container');
@@ -608,7 +608,6 @@
       loginContainer.classList.add('hidden');
       mainContainer.classList.remove('hidden');
 
-      // Welcome message
       if (welcomeUser) {
         const expText = session.expiry ? ` · Expiry: ${session.expiry}` : '';
         welcomeUser.textContent = `👤 ${session.id} · ${session.plan} Plan${expText}`;
@@ -746,10 +745,8 @@
       try {
         const session = JSON.parse(s);
         if (session && session.deviceId === DEVICE_ID) {
-          // ✅ Session ရှိသေးတယ် → Dashboard ဖွင့်
           showDashboard(session);
         } else {
-          // Device ပြောင်းထားရင် session ဖျက်
           localStorage.removeItem('mept_session');
         }
       } catch (e) {
