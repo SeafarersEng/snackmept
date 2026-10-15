@@ -490,14 +490,14 @@
   <div id="main-container" class="hidden">
 
     <header class="navbar">
-      <h1>MEPT Learning </h1>
+      <h1>MEPT Master Hub</h1>
       <button id="logoutBtn" class="btn-outline">
         <i class="fas fa-sign-out-alt"></i> Logout
       </button>
     </header>
 
     <section class="hero-section">
-      <h2>Welcome to MEPT Learning ! 👋</h2>
+      <h2>Welcome to MEPT Master Hub! 👋</h2>
       <marquee behavior="scroll" direction="left">
         Copyright &copy; 2026 TTNY Team. All rights reserved.
       </marquee>
@@ -513,17 +513,17 @@
       <!-- 1. MEPT Learning -->
       <div class="card">
         <div class="card-icon-wrap"><i class="fas fa-book-open"></i></div>
-        <h3>MEPT 5 Skills Learning</h3>
+        <h3>MEPT Learning</h3>
         <p>Grammar, Speaking, Writing, Listening စသည့် စာတွေ့သင်ခန်းစာများနှင့် Answer Keys များကို လေ့လာနိုင်ပါသည်။</p>
         <a href="learning.html" class="card-btn">
           <span>လေ့လာမည်</span> <i class="fas fa-arrow-right"></i>
         </a>
       </div>
 
-      <!-- 2. MEPT Test -->
+      <!-- 2. Mock Test -->
       <div class="card">
         <div class="card-icon-wrap"><i class="fas fa-file-signature"></i></div>
-        <h3>MEPT Pre Test</h3>
+        <h3>MEPT Mock Test</h3>
         <p>Exam မဖြေမီ အစမ်းဖြေကြည့်ပြီး မိမိ၏ စွမ်းရည် Level ကို တိကျစွာ စမ်းသပ်စစ်ဆေးနိုင်ပါသည်။</p>
         <a href="mocktest.html" class="card-btn">
           <span>အစမ်းဖြေမည်</span> <i class="fas fa-arrow-right"></i>
@@ -536,9 +536,9 @@
         <div class="card-icon-wrap" style="background: rgba(14, 165, 233, 0.2); color: #38bdf8;">
           <i class="fas fa-microphone-alt"></i>
         </div>
-        <h3>Speaking  Test</h3>
-       
-        Voice System ဖြင့် စကားပြောစွမ်းရည်ကို  စစ်ဆေးနိုင်ပါသည်။</p>
+        <h3>Speaking Voice Test</h3>
+        <p><strong style="color:#fbbf24;">🎉 ၃ လ နှင့် အထက် Package များအတွက်!</strong><br>
+        Voice System ဖြင့် စကားပြောစွမ်းရည်ကို Test 101 – 104 အထိ အဆင့်လိုက် စစ်ဆေးနိုင်ပါသည်။</p>
         <a href="voice-test.html" class="card-btn" style="background: linear-gradient(135deg, #0ea5e9, #3b82f6);">
           <span>ဖြေဆိုမည်</span> <i class="fas fa-arrow-right"></i>
         </a>
@@ -547,7 +547,7 @@
       <!-- 4. Old Question -->
       <div class="card">
         <div class="card-icon-wrap"><i class="fas fa-folder-open"></i></div>
-        <h3>MEPT Old Questions</h3>
+        <h3>Old Questions</h3>
         <p>ယခင်နှစ်များက မေးခဲ့သော MEPT စာမေးပွဲ မေးခွန်းဟောင်းများနှင့် မေးခွန်းပုံစံများကို လေ့လာနိုင်ပါသည်။</p>
         <a href="oldquestions.html" class="card-btn">
           <span>ကြည့်ရှုမည်</span> <i class="fas fa-arrow-right"></i>
@@ -560,9 +560,9 @@
   <!-- ================= LOGIN SCRIPT ================= -->
   <script>
     // ================================================================
-    // ⚠️ ဒီနေရာမှာ သင့် Google Apps Script Web App URL ထည့်ပါ
+    // ✅ Apps Script URL (သင့် URL ထည့်ပြီး)
     // ================================================================
-    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbXXXXXXXXXXXXXXXXXXXXX/exec";
+    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx9B77TpcleetOyE60NkVL_14b30YXbQY_BKc4Anhp_JSfegRu-zZfgWIWhRl5RIh7pzg/exec";
 
     const loginContainer = document.getElementById('login-container');
     const mainContainer  = document.getElementById('main-container');
@@ -645,7 +645,6 @@
       loginContainer.classList.add('hidden');
       mainContainer.classList.remove('hidden');
 
-      // Welcome message
       if (welcomeUser) {
         const expText = session.expiry ? ` · Expiry: ${session.expiry}` : '';
         welcomeUser.textContent = `👤 ${session.id} · ${session.plan} Plan${expText}`;
@@ -775,22 +774,10 @@
     });
 
     // ================================================================
-    // AUTO LOGIN (if session exists & same device)
+    // ❌ AUTO-LOGIN (Auto-redirect) ကို ဖြုတ်ထားသည်
+    // Session ရှိရင်လည်း Login form ကို ဒီအတိုင်း ပြမယ်
+    // (User ကိုယ်တိုင် Login ဝင်ရမယ်)
     // ================================================================
-    (function () {
-      const s = localStorage.getItem('mept_session');
-      if (!s) return;
-      try {
-        const session = JSON.parse(s);
-        if (session && session.deviceId === DEVICE_ID) {
-          showDashboard(session);
-        } else {
-          localStorage.removeItem('mept_session');
-        }
-      } catch (e) {
-        localStorage.removeItem('mept_session');
-      }
-    })();
 
     // ================================================================
     // INPUT HELPERS
