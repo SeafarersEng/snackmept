@@ -84,7 +84,12 @@
       color: #38bdf8;
       font-size: 22px;
     }
-    .btn-back {
+    .navbar-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .btn-back, .btn-home {
       background: rgba(255, 255, 255, 0.06);
       border: 1px solid rgba(255, 255, 255, 0.15);
       color: #fff;
@@ -97,11 +102,16 @@
       display: inline-flex; align-items: center; gap: 6px;
       text-decoration: none;
     }
-    .btn-back:hover {
+    .btn-back:hover, .btn-home:hover {
       background: rgba(255, 255, 255, 0.12);
       transform: translateY(-2px);
     }
-    .btn-back:active { transform: scale(0.97); }
+    .btn-back:active, .btn-home:active { transform: scale(0.97); }
+    .btn-home {
+      background: linear-gradient(120deg, #3b82f6, #06b6d4);
+      border-color: transparent;
+      box-shadow: 0 8px 20px -8px rgba(59, 130, 246, 0.8);
+    }
 
     /* ============ HERO ============ */
     .hero-section {
@@ -234,6 +244,7 @@
       padding: 10px;
       border: 1px dashed rgba(56, 189, 248, 0.35);
       overflow: hidden;
+      cursor: pointer;
     }
     .picture-container img {
       max-width: 100%;
@@ -246,6 +257,7 @@
       background: #0a1a3a;
       box-shadow: 0 8px 24px -10px rgba(0, 0, 0, 0.7);
       transition: 0.4s;
+      pointer-events: none;
     }
     .speaking-card:hover .picture-container img {
       transform: scale(1.02);
@@ -359,7 +371,6 @@
       background: rgba(59, 130, 246, 0.08);
       border-radius: 10px;
       border-left: 3px solid #3b82f6;
-      position: relative;
     }
     .bullet-item strong {
       color: #fbbf24;
@@ -421,7 +432,7 @@
       .card-header h3 { font-size: 15.5px; }
       .card-icon { width: 42px; height: 42px; font-size: 19px; }
       .picture-container img { max-height: 220px; }
-      .btn-back {
+      .btn-back, .btn-home {
         padding: 7px 16px;
         font-size: 12.5px;
       }
@@ -443,9 +454,14 @@
     <!-- ================= NAVBAR ================= -->
     <div class="navbar">
       <h1><i class="fas fa-image"></i> Picture Speaking</h1>
-      <a href="learning.html" class="btn-back">
-        <i class="fas fa-arrow-left"></i> Back
-      </a>
+      <div class="navbar-actions">
+        <a href="learning.html" class="btn-back">
+          <i class="fas fa-arrow-left"></i> Back
+        </a>
+        <a href="login.html" class="btn-home">
+          <i class="fas fa-home"></i> Home
+        </a>
+      </div>
     </div>
 
     <!-- ================= HERO ================= -->
@@ -474,6 +490,9 @@
 
   <!-- ================= LOGIN GUARD ================= -->
   <script>
+    // ================================================================
+    // 🔐 LOGIN GUARD — mept_session စစ်
+    // ================================================================
     (function () {
       const raw = localStorage.getItem('mept_session');
       if (!raw) {
@@ -499,9 +518,7 @@
     // PICTURE SPEAKING TOPICS (26 topics)
     // ============================================================
     const PICTURE_SPEAKING_TOPICS = [
-      {
-        id: 1,
-        title: "Fire Extinguisher",
+      { id: 1, title: "Fire Extinguisher",
         description: "A fire extinguisher is a vital safety device used to put out small, controllable fires on board a ship. Every crew member must know its location and how to operate it safely using the PASS method—Pull, Aim, Squeeze, and Sweep. Using the correct type of extinguisher for electrical, oil, or paper fires is essential to prevent accidents.",
         bullets: [
           "In this picture, I can see a red fire extinguisher mounted on the wall.",
@@ -510,9 +527,7 @@
         ],
         vocab: "fire extinguisher, PASS method, pressure gauge, electrical fires, oil fires, safety device"
       },
-      {
-        id: 2,
-        title: "Man Overboard (MOB)",
+      { id: 2, title: "Man Overboard (MOB)",
         description: "A Man Overboard situation is a critical life-threatening emergency at sea. When someone falls into the water, the immediate priority is to alert the crew, mark the location, and keep continuous visual contact with the person. Quick action and teamwork are crucial to saving a life in rough ocean conditions.",
         bullets: [
           "In this picture, I can see a lifebuoy being thrown into the water.",
@@ -521,9 +536,7 @@
         ],
         vocab: "Man Overboard, lifebuoy, visual contact, rescue, emergency, teamwork"
       },
-      {
-        id: 3,
-        title: "Abandon Ship",
+      { id: 3, title: "Abandon Ship",
         description: "Abandoning ship is the final emergency action taken only under direct orders from the Master when the vessel cannot be saved. Crew members must act calmly, wear warm clothing, put on their lifejackets or immersion suits, and gather at their designated muster stations with essential survival gear.",
         bullets: [
           "In this picture, I can see crew members wearing lifejackets and gathering at the muster station.",
@@ -532,9 +545,7 @@
         ],
         vocab: "Abandon Ship, Master, muster station, immersion suits, lifeboat, evacuation"
       },
-      {
-        id: 4,
-        title: "Restricted Area",
+      { id: 4, title: "Restricted Area",
         description: "Restricted areas on a ship are specific zones, such as the Navigation Bridge, Engine Control Room, and Cargo Control Room, where entry is controlled. To comply with ISPS security rules, unauthorized personnel are strictly prohibited from entering these areas without explicit permission from duty officers.",
         bullets: [
           "In this picture, I can see a warning sign that says 'Restricted Area - No Unauthorized Entry.'",
@@ -543,9 +554,7 @@
         ],
         vocab: "Restricted Area, ISPS, Navigation Bridge, unauthorized, identity badge, security"
       },
-      {
-        id: 5,
-        title: "Oil Pollution",
+      { id: 5, title: "Oil Pollution",
         description: "Oil pollution poses a severe environmental threat to marine life and coastal ecosystems. Ships must comply strictly with MARPOL Annex I regulations during bunkering, cargo operations, and sludge transfer to prevent any oil spills into the sea.",
         bullets: [
           "In this picture, I can see an oil spill spreading on the deck during bunkering.",
@@ -554,9 +563,7 @@
         ],
         vocab: "Oil Pollution, MARPOL, bunkering, SOPEP, absorbent pads, marine life"
       },
-      {
-        id: 6,
-        title: "Alcohol Policy",
+      { id: 6, title: "Alcohol Policy",
         description: "To maintain safety at sea, shipping companies enforce a strict alcohol policy, often maintaining zero tolerance. Alcohol impairs judgment and physical coordination, significantly increasing the risk of accidents during watches and hazardous operations.",
         bullets: [
           "In this picture, I can see a safety officer conducting a breathalyzer test on a crew member.",
@@ -565,9 +572,7 @@
         ],
         vocab: "Alcohol Policy, zero tolerance, breathalyzer, watch duty, judgment, safety"
       },
-      {
-        id: 7,
-        title: "Heavy Weather",
+      { id: 7, title: "Heavy Weather",
         description: "Heavy weather conditions present severe operational challenges, including high waves, strong winds, and heavy vessel rolling. Before entering rough seas, crew members must secure all loose gear, double-check cargo lashings, and seal all weather-tight doors to keep the vessel stable and safe.",
         bullets: [
           "In this picture, I can see massive ocean waves crashing against the ship's main deck.",
@@ -576,9 +581,7 @@
         ],
         vocab: "Heavy Weather, rolling, lashings, weather-tight, cargo shift, structural damage"
       },
-      {
-        id: 8,
-        title: "Garbage Management Plan",
+      { id: 8, title: "Garbage Management Plan",
         description: "Under MARPOL Annex V, every ship must maintain a Garbage Management Plan to properly collect, store, and dispose of waste. Plastics must never be discharged into the sea, and all garbage must be strictly segregated into designated bins on board.",
         bullets: [
           "In this picture, I can see color-coded garbage bins labeled for plastics, food waste, and paper.",
@@ -587,9 +590,7 @@
         ],
         vocab: "Garbage Management, MARPOL, color-coded bins, plastics, segregation, maritime law"
       },
-      {
-        id: 9,
-        title: "Personal Protective Equipment (PPE)",
+      { id: 9, title: "Personal Protective Equipment (PPE)",
         description: "Personal Protective Equipment (PPE) is the primary defense against workplace injuries on board. Standard PPE includes safety helmets, steel-toe boots, protective gloves, goggles, coveralls, and hearing protection, which must be worn depending on the job risks.",
         bullets: [
           "In this picture, I can see a worker wearing a safety helmet, coveralls, gloves, and safety boots.",
@@ -598,9 +599,7 @@
         ],
         vocab: "PPE, safety helmet, coveralls, goggles, maintenance, mechanical hazards"
       },
-      {
-        id: 10,
-        title: "Oil Leak",
+      { id: 10, title: "Oil Leak",
         description: "An oil leak in the engine room or on deck creates serious fire and slip hazards. Immediate corrective actions involve stopping the machinery, containing the leak with a drip tray, and reporting the incident to the duty engineer or officer.",
         bullets: [
           "In this picture, I can see oil leaking from a pipe flange onto the engine room floor.",
@@ -609,9 +608,7 @@
         ],
         vocab: "Oil Leak, engine room, drip tray, pipe flange, contamination, fire hazards"
       },
-      {
-        id: 11,
-        title: "Explosion",
+      { id: 11, title: "Explosion",
         description: "An explosion on board can cause catastrophic damage, fires, and immediate structural danger to the vessel. In the event of an explosion, crew members must immediately raise the general alarm, report the location, and follow emergency response procedures.",
         bullets: [
           "In this picture, I can see heavy smoke and flame rising from a compartment on board.",
@@ -620,9 +617,7 @@
         ],
         vocab: "Explosion, catastrophic damage, general alarm, fire squad, emergency response"
       },
-      {
-        id: 12,
-        title: "First Aid",
+      { id: 12, title: "First Aid",
         description: "First aid is the immediate care given to an injured or ill crew member before professional medical help is available. Seafarers trained in first aid use basic techniques like CPR, wound dressing, and fracture stabilization to preserve life and prevent condition worsening.",
         bullets: [
           "In this picture, I can see a trained crew member applying a clean bandage to a colleague's injured arm.",
@@ -631,9 +626,7 @@
         ],
         vocab: "First Aid, CPR, wound dressing, fracture, first responder, casualty"
       },
-      {
-        id: 13,
-        title: "Lifejacket",
+      { id: 13, title: "Lifejacket",
         description: "A lifejacket is an essential life-saving appliance designed to keep an unconscious person afloat with their mouth and nose clear of the water. Crew members must ensure their lifejackets are in good working condition, fitted with a working light, whistle, and retro-reflective tape.",
         bullets: [
           "In this picture, I can see an orange lifejacket equipped with a whistle and automatic light.",
@@ -642,9 +635,7 @@
         ],
         vocab: "Lifejacket, unconscious, retro-reflective tape, waist straps, immersion, emergency"
       },
-      {
-        id: 14,
-        title: "Enclosed Space Entry",
+      { id: 14, title: "Enclosed Space Entry",
         description: "Enclosed spaces such as ballast tanks, cargo holds, and chain lockers pose high risks of oxygen depletion and toxic gas accumulation. Entry is strictly regulated and requires an Entry Permit, thorough atmosphere testing, continuous ventilation, and a designated standby person at the entrance.",
         bullets: [
           "In this picture, I can see an officer testing the air inside a manhole using a gas detector.",
@@ -653,9 +644,7 @@
         ],
         vocab: "Enclosed Space, Entry Permit, gas detector, oxygen depletion, toxic gas, standby person"
       },
-      {
-        id: 15,
-        title: "Doctor Visit",
+      { id: 15, title: "Doctor Visit",
         description: "A doctor is examining a patient in a modern clinic. The doctor is using a stethoscope to check the patient's heart. The patient looks calm and the clinic is clean and well-lit.",
         bullets: [
           "In this picture, I can see a doctor in a white coat examining a patient.",
@@ -668,9 +657,7 @@
         ],
         vocab: "doctor, patient, stethoscope, clinic, examination, health check-up, heartbeat, professional"
       },
-      {
-        id: 16,
-        title: "Friends Playing Football",
+      { id: 16, title: "Friends Playing Football",
         description: "A group of young friends is playing football on a green grass field. One player is kicking the ball while others are running and cheering. The weather is sunny and the atmosphere is energetic.",
         bullets: [
           "In this picture, I can see a group of young friends playing football.",
@@ -683,9 +670,7 @@
         ],
         vocab: "football, field, players, kicking, teamwork, fitness, energetic, goal"
       },
-      {
-        id: 17,
-        title: "Social Media Usage",
+      { id: 17, title: "Social Media Usage",
         description: "A young person is sitting on a sofa using a smartphone. The screen shows social media apps like Instagram and Facebook. They look relaxed and engaged in what they are viewing.",
         bullets: [
           "In this picture, I can see a young person using a smartphone.",
@@ -698,9 +683,7 @@
         ],
         vocab: "smartphone, social media, Instagram, Facebook, screen, connection, relaxed, comfortable"
       },
-      {
-        id: 18,
-        title: "Travel Package",
+      { id: 18, title: "Travel Package",
         description: "A travel package is arranged on a wooden table. It includes a suitcase, backpack, smartphone, folded clothes, and an open passport. Everything looks neatly organized and ready for a trip.",
         bullets: [
           "In this picture, I can see travel items arranged neatly on a wooden table.",
@@ -713,9 +696,7 @@
         ],
         vocab: "suitcase, backpack, passport, luggage, travel, organized, prepared, journey"
       },
-      {
-        id: 19,
-        title: "Online Shopping",
+      { id: 19, title: "Online Shopping",
         description: "A person is shopping online on a laptop. The screen shows an e-commerce website with various products. They are holding a credit card and look satisfied with their purchase.",
         bullets: [
           "In this picture, I can see a person doing online shopping.",
@@ -728,9 +709,7 @@
         ],
         vocab: "online shopping, laptop, e-commerce, website, credit card, purchase, convenient, choices"
       },
-      {
-        id: 20,
-        title: "Bus Station Waiting",
+      { id: 20, title: "Bus Station Waiting",
         description: "Passengers are waiting for the bus at a busy station. Some people are sitting on benches, while others are standing with their luggage. A large bus is arriving in the background.",
         bullets: [
           "In this picture, I can see a busy bus station.",
@@ -743,9 +722,7 @@
         ],
         vocab: "bus station, passengers, luggage, benches, public transport, commuting, waiting"
       },
-      {
-        id: 21,
-        title: "Beach Activities",
+      { id: 21, title: "Beach Activities",
         description: "A beautiful beach scene with people playing volleyball, swimming in the sea, and relaxing on the sand. Children are building sandcastles. The sky is bright and the water is clear.",
         bullets: [
           "In this picture, I can see a beautiful beach on a sunny day.",
@@ -758,9 +735,7 @@
         ],
         vocab: "beach, volleyball, swimming, sand, relax, summer, shore, sunny"
       },
-      {
-        id: 22,
-        title: "Park Walking",
+      { id: 22, title: "Park Walking",
         description: "A peaceful park scene with people walking and jogging on a winding path. Trees and flowers are in full bloom. A family is sitting on a bench enjoying the sunny weather.",
         bullets: [
           "In this picture, I can see a peaceful and beautiful park.",
@@ -773,9 +748,7 @@
         ],
         vocab: "park, walking, jogging, bench, flowers, healthy lifestyle, peaceful, colourful"
       },
-      {
-        id: 23,
-        title: "Party Celebration",
+      { id: 23, title: "Party Celebration",
         description: "A lively party scene with friends celebrating together. Colorful balloons, decorations, and a birthday cake are on the table. Everyone is smiling and having a good time.",
         bullets: [
           "In this picture, I can see friends celebrating a special occasion together.",
@@ -788,9 +761,7 @@
         ],
         vocab: "party, celebration, balloons, decorations, birthday cake, friends, special occasion"
       },
-      {
-        id: 24,
-        title: "Coffee Shop",
+      { id: 24, title: "Coffee Shop",
         description: "A cozy coffee shop scene with a person sitting at a wooden table holding a cup of coffee. A laptop and notebook are on the table. The atmosphere is warm and relaxing.",
         bullets: [
           "In this picture, I can see a person sitting in a nice coffee shop.",
@@ -803,9 +774,7 @@
         ],
         vocab: "coffee shop, coffee cup, laptop, relaxing, warm atmosphere, studying, comfortable"
       },
-      {
-        id: 25,
-        title: "Airport Departure",
+      { id: 25, title: "Airport Departure",
         description: "A busy airport terminal with passengers walking with luggage and checking in at counters. Large windows show airplanes parked on the tarmac. The atmosphere is busy and exciting.",
         bullets: [
           "In this picture, I can see a busy airport terminal.",
@@ -818,9 +787,7 @@
         ],
         vocab: "airport, terminal, luggage, passengers, boarding, travel, tarmac, check-in"
       },
-      {
-        id: 26,
-        title: "Restaurant Dining",
+      { id: 26, title: "Restaurant Dining",
         description: "A warm and inviting restaurant scene with people enjoying a delicious meal together. The table is set with plates of food, glasses, and cutlery. Everyone looks happy and satisfied.",
         bullets: [
           "In this picture, I can see people having dinner at a nice restaurant.",
@@ -892,7 +859,7 @@
               <h3>${t.title}</h3>
             </div>
 
-            <div class="picture-container">
+            <div class="picture-container" onclick="toggleDetailsFromImage(this)">
               <img src="${imageSrc}" alt="${t.title}"
                    onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
               <div class="img-placeholder">
@@ -930,7 +897,7 @@
     }
 
     // ============================================================
-    // TOGGLE DETAILS
+    // TOGGLE DETAILS (Button)
     // ============================================================
     function toggleDetails(btn) {
       const box = btn.nextElementSibling;
@@ -945,6 +912,16 @@
         box.classList.add('show');
         btn.innerHTML = '<i class="fas fa-minus-circle"></i> Hide Details & Vocabulary';
       }
+    }
+
+    // ============================================================
+    // TOGGLE DETAILS (From Picture Click)
+    // ============================================================
+    function toggleDetailsFromImage(container) {
+      const card = container.closest('.speaking-card');
+      if (!card) return;
+      const btn = card.querySelector('.reveal-trigger-btn');
+      if (btn) toggleDetails(btn);
     }
 
     // ============================================================
