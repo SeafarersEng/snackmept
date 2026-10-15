@@ -279,64 +279,36 @@
     </div>
 
     <script>
-        // ================================================================
-        // 🔐 LOGIN GUARD — mept_session ကို စစ်ဆေးသည်
-        // ================================================================
-        (function () {
-            const raw = localStorage.getItem('mept_session');
-            if (!raw) {
-                // session မရှိ → login.html သို့
-                window.location.replace('index.html');
-                return;
-            }
-            try {
-                const session = JSON.parse(raw);
-                if (!session || !session.id) {
-                    localStorage.removeItem('mept_session');
-                    window.location.replace('index.html');
-                }
-            } catch (e) {
-                localStorage.removeItem('mept_session');
-                window.location.replace('index.html');
-            }
-        })();
+  // ================================================================
+  // 🔐 LOGIN GUARD — mept_session စစ်
+  // ================================================================
+  (function () {
+    const raw = localStorage.getItem('mept_session');
+    if (!raw) {
+      window.location.replace('login.html');
+      return;
+    }
+    try {
+      const session = JSON.parse(raw);
+      if (!session || !session.id) {
+        localStorage.removeItem('mept_session');
+        window.location.replace('login.html');
+      }
+    } catch (e) {
+      localStorage.removeItem('mept_session');
+      window.location.replace('login.html');
+    }
+  })();
 
-        // ================================================================
-        // 👤 SHOW USER BADGE
-        // ================================================================
-        document.addEventListener('DOMContentLoaded', function () {
-            const badge = document.getElementById('userBadge');
-            try {
-                const session = JSON.parse(localStorage.getItem('mept_session') || '{}');
-                if (session && session.id) {
-                    badge.innerHTML = '<i class="fas fa-circle"></i> ' + session.id;
-                } else {
-                    badge.innerHTML = '<i class="fas fa-circle"></i> Guest';
-                }
-            } catch (e) {
-                badge.innerHTML = '<i class="fas fa-circle"></i> Guest';
-            }
-
-            // Active highlight
-            const current = window.location.pathname.split('/').pop() || 'learning.html';
-            document.querySelectorAll('.nav-card').forEach(card => {
-                if (card.getAttribute('href') === current) {
-                    card.style.background = '#e0ebff';
-                    card.style.borderColor = '#1a4d8f';
-                    card.style.boxShadow = '0 4px 12px rgba(26,77,143,0.15)';
-                }
-            });
-        });
-
-        // ================================================================
-        // 🚪 LOGOUT
-        // ================================================================
-        function logout() {
-            if (!confirm('Logout လုပ်ရန် သေချာပါသလား?')) return;
-            localStorage.removeItem('mept_session');
-            window.location.replace('index.html');
-        }
-    </script>
+  // ================================================================
+  // 🚪 LOGOUT FUNCTION
+  // ================================================================
+  function logout() {
+    if (!confirm('Logout လုပ်ရန် သေချာပါသလား?')) return;
+    localStorage.removeItem('mept_session');
+    window.location.replace('login.html');
+  }
+</script>
 
 </body>
 </html>
