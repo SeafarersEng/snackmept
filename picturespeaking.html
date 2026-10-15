@@ -344,9 +344,26 @@
 
     </div>
 <script>
-  if (localStorage.getItem('isLoggedIn') !== 'true') {
-    window.location.href = 'index.html'; 
-  }
+  // ================================================================
+  // 🔐 LOGIN GUARD (session key = mept_session)
+  // ================================================================
+  (function () {
+    const raw = localStorage.getItem('mept_session');
+    if (!raw) {
+      window.location.replace('login.html');
+      return;
+    }
+    try {
+      const session = JSON.parse(raw);
+      if (!session || !session.id) {
+        localStorage.removeItem('mept_session');
+        window.location.replace('login.html');
+      }
+    } catch (e) {
+      localStorage.removeItem('mept_session');
+      window.location.replace('login.html');
+    }
+  })();
 </script>
     <script>
         // ============================================================
